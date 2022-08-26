@@ -50,35 +50,46 @@ bg-gradient-to-r from-lime-500 to-slate-200
                 ">
                     <div class="form-row flex  flex-col items-flex-start  mt-2 mr-[150px] min-w-[210px]">
                         <label for="full-name"> First Name</label>
-                        <input type="text" name="full-name" id="full-name" class="border-2" required value="Ocea">
+                        <input type="text" name="full-name" id="full-name" class="border-2 invalid:border-red-300" required value="Ocea">
                     </div>
 
                     <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
                         <label for="last-name">Last Name</label>
-                        <input type="text" name="last-name" id="last-name" class="border-2" required value="Soff">
+                        <input type="text" name="last-name" id="last-name" class="border-2 invalid:border-red-300" required value="Soff"
+                        >
                     </div>
 
                     <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="name@domain.com" class="border-2"
+                        <input type="email" name="email" id="email" placeholder="name@domain.com" class="border-2 invalid:border-red-300"
                             required value="aquatic@proton.me">
                     </div>
 
                     <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
                         <label for="phone">Phone Number</label>
-                        <input type="text" name="number" id="number" placeholder="313-257-3095" class="border-2"
+                        <input type="text" name="number" id="number" placeholder="313-257-3095" class="border-2 invalid:border-red-300"
                             pattern="\d{3}[\-]\d{3}[\-]\d{4}" title='Please enter a valid number (ex: 313-257-3095)'
                             required value="943-321-5917">
                     </div>
 
                     <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" required>
+                        <input type="password" name="password" id="password" class="border-2 invalid:border-red-300" 
+                        minlength="5"
+                        value="12345"
+                        required>
+                        <div id="passMatch"
+                        class="text-red-400 text-xs"
+                        >
+                        </div>
                     </div>
 
                     <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
                         <label for="confirm-password" class='min-w-[210px]'> Confirm Password</label>
-                        <input type="password" name="confirm-password" id="confirm-password" class="border-2" required>
+                        <input type="password" name="confirm-password" id="confirm-password" class="border-2 invalid:border-red-300" 
+                        minlength="5"
+                        value="54321"
+                        required>
                     </div>
                 </div>
 
