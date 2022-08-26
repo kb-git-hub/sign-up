@@ -14,19 +14,21 @@
 
 </head>
 
-<body class="flex">
+<body class="flex bg-slate-800 ">
 
-    <div class="leftContainer border-4 border-solid border-green-600 w-14 min-w-[35%] min-h-screen flex items-center">
-        <div class="leftBand  border-4 h-32 grow  mb-[78%] flex justify-center">
-            <div class="leftLogo w-32 border-4">hello</div>
-            <div class="leftText w-32 border-4">3threejs</div>
+    <div class="leftContainer w-14 min-w-[365px] max-w-[60%] min-h-fit flex items-center">
+        <div class="leftBand  border-y-2 h-32 grow  mt-[15px] min-w-[384px] flex justify-center">
+            <div class="leftLogo w-32 border-4 flex justify-center">
+                <img src="https://img.icons8.com/cotton/100/000000/falcon-9-landing.png" />
+            </div>
+            <div class="leftText w-32 border-2 text-8xl flex justify-center items-center">X</div>
         </div>
     </div>
 
-    <div class="rightContainer border-4 border-red-400 grow flex flex-col">
+    <div class="rightContainer bg-slate-300 flex flex-col grow min-w-[692px] rounded-lg">
 
-        <div class="CaptureText border-2 min-h-[30%]">
-            <div class=" w-[70%] mt-12 p-2 leading-6">
+        <div class="CaptureText  min-h-[40%]">
+            <div class=" w-[70%] mt-8  leading-6  p-4">
                 This is definitely a real online service. This is what you need to realize your dreams. Pursue truth.
 
                 <div> Sign up <em>now</em> to get started.
@@ -35,58 +37,63 @@
 
             </div>
         </div>
-        <form action="./" method="post"></form>
-        <div class="signUpForms border-2 border-red-200 min-h-[35%] ">
 
-            <div class="form-row">
-                <label for="full-name"> FirstName</label>
-                <input type="text" name="full-name" id="full-name" class="border-2">
-            </div>
+        <div class="  signUpForms bg-slate-200 min-h-[60%]  p-4">
 
-            <div class="form-row">
-                <label for="last-name">Last Name</label>
-                <input type="text" name="last-name" id="last-name" class="border-2">
-            </div>
+            <form action="./" method="post">
+                <div class="text-xl mt-4">Step into the future</div>
 
-            <div class="form-row">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="name@domain.com" class="border-2">
-            </div>
+                <div class="form-container 
+                grid grid-cols-2 gap-4 mt-2 text-sm
+                ">
+                    <div class="form-row flex  flex-col items-flex-start  mt-2 mr-[150px] min-w-[210px]">
+                        <label for="full-name"> First Name</label>
+                        <input type="text" name="full-name" id="full-name" class="border-2" required value="Ocea">
+                    </div>
 
-            <div class="form-row">
-                <label for="phone">Phone Number</label>
-                <input type="number" name="number" id="number" placeholder="313-257-3095" class="border-2">
-            </div>
+                    <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" name="last-name" id="last-name" class="border-2" required value="Soff">
+                    </div>
 
-            <div class="form-row">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="*****" class="border-2">
-            </div>
+                    <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="name@domain.com" class="border-2"
+                            required value="aquatic@proton.me">
+                    </div>
 
-            <div class="form-row">
-                <label for="confirm-password">Password</label>
-                <input type="password" name="confirm-password" id="confirm-password" placeholder="*****"
-                    class="border-2">
-            </div>
+                    <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" name="number" id="number" placeholder="313-257-3095" class="border-2"
+                            pattern="\d{3}[\-]\d{3}[\-]\d{4}" title='Please enter a valid number (ex: 313-257-3095)'
+                            required value="943-321-5917">
+                    </div>
 
+                    <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" required>
+                    </div>
 
-
+                    <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
+                        <label for="confirm-password" class='min-w-[210px]'> Confirm Password</label>
+                        <input type="password" name="confirm-password" id="confirm-password" class="border-2" required>
+                    </div>
+                </div>
 
         </div>
-        <div class="login border-2 border-blue-200 min-h-[20%]">
+        <div class="login bg-slate-300  min-h-[30%] rounded-b-lg   p-4 ">
             <div class="form-row">
-                <button type="submit">Engage</button>
+                <button type="submit" class='border-2 border-red-600 mt-4 py-2 px-6 rounded-lg'>Engage</button>
 
+                <div class="text-sm mt-2">Already have an account? <a href="./">Log in</a></div>
             </div>
-
         </div>
 
         </form>
-        <div class="footer border-2 border-green-200 min-h-[15%]"></div>
-
-
-
     </div>
+    <!-- <div class="footer bg-slate-800 min-h-[50px]">sdf</div> -->
+
+
 
 </body>
 
