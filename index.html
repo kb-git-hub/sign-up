@@ -11,13 +11,26 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js" defer></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+    <script type="importmap" defer>
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@0.143.0/build/three.module.js"
+          }
+        }
+      </script>
+    <script type="module" src="three.js" defer></script>
+
     <link rel="stylesheet" href="style.css">
 
 </head>
 
-<body class="flex text-gray-500 
-bg-gradient-to-r from-lime-500 to-slate-200
- ">
+<body class="flex relative text-gray-500">
+ <div class="threeDimDiv absolute -z-50"></div>
+
+ <!-- bg-gradient-to-r from-lime-500 to-slate-200 -->
     
 
     <div class="leftContainer w-14 min-w-[365px] max-w-[60%] min-h-fit flex items-center ">

@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
 
 *{
-    font-family: 'Michroma', sans-serif;
-    
-
-}
-
-body{
-    background-image: url(./img/space.jpg);
+    font-family: 'Michroma', sans-serif;   
 }
