@@ -15,18 +15,15 @@ const world = {
         height: 30,
         widthSegments: 12,
         heightSegments: 15,
-        rotation : {
+        rotation: {
             x: -0.5,
             y: 1,
             z: 1,
         }
     }
-
 }
 
-
-console.log(OrbitControls);
-console.log(world);
+// Constant Variable declarations
 
 const threeDimEl = document.querySelector('.threeDimDiv')
 const
@@ -36,9 +33,9 @@ const
 
 const
     geometry = new THREE.PlaneGeometry(
-        world.plane.width, 
+        world.plane.width,
         world.plane.height,
-        world.plane.widthSegments, 
+        world.plane.widthSegments,
         world.plane.heightSegments),
     material = new THREE.MeshPhongMaterial({
         color: '#84cc16',
@@ -46,13 +43,10 @@ const
         flatShading: THREE.FlatShading
     }),
     planeGeo = new THREE.Mesh(geometry, material),
-    light = new THREE.DirectionalLight('#BEF264', 1),
-    backLight = new THREE.DirectionalLight('#F1F5F9', 1),
-    { array } = planeGeo.geometry.attributes.position
-
-
-
-
+    light = new THREE.DirectionalLight('#BEF264', 0.8),
+    backLight = new THREE.DirectionalLight('#F1F5F9', 0.8),
+    { array } = planeGeo.geometry.attributes.position,
+    rayCaster = new THREE.Raycaster()
 
 light.position.set(0, 0, 1)
 backLight.position.set(0, 0, -1)
@@ -78,17 +72,29 @@ planeGeo.rotation.x = world.plane.rotation.x
 
 // Non-animate render
 renderer.render(scene, camera)
-new OrbitControls(camera,renderer.domElement)
+new OrbitControls(camera, renderer.domElement)
+
+
+// Mouse tracking
+const mouse = {
+    x: undefined,
+    y: undefined
+}
 
 
 
 function animate() {
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
-    // planeGeo.rotation.x += 0.01
-    // planeGeo.rotation.z += 0.01
-    // planeGeo.rotatation.z += 0.01
+    rayCaster.setFromCamera(mouse, camera)
 
 }
 
 // animate()
+
+addEventListener('mousemove', (e) => {
+    mouse.x = (e.clientX / innerWidth) * 2 - 1
+    mouse.y = -(e.clientY / innerHeight) * 2 + 1
+})
+
+
