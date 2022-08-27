@@ -27,101 +27,100 @@
 
 </head>
 
-<body class="flex relative text-slate-200">
- <div class="threeDimDiv absolute w-screen -z-50"></div>
+<body class="flex justify-center relative text-slate-200">
+    <div class="threeDimDiv absolute w-screen -z-50"></div>
+    <div class="flex relative text-slate-200 w-[900px]">
+        
 
- <!-- bg-gradient-to-r from-lime-500 to-slate-200 -->
-    
+        <!-- bg-gradient-to-r from-lime-500 to-slate-200 -->
 
-    <div class="leftContainer w-14 min-w-[365px] max-w-[60%] min-h-fit flex items-center ">
-        <div class="leftBand bg-opacity-80  h-32 grow  mt-[15px] min-w-[360px] flex justify-center bg-slate-800   ">
-            <div class="  leftLogo w-32 flex justify-end items-end mb-2 text-slate-200">
-               span
-            </div>
-            <div class="leftText w-32  text-8xl flex justify-center items-center"><img src="./img/x2.png" alt=""></div>
-        </div>
-    </div>
 
-    <div class="rightContainer bg-slate-800 flex flex-col mr-6 min-w-[692px]  bg-opacity-80  rounded-t-lg">
-
-        <div class="CaptureText  min-h-[40%]  ">
-            <div class=" w-[70%] mt-8  leading-6  p-4 ">
-                 Pursue truth over tribalism. Strive to be more than what you are. Seek adventure and take on responsibility.
-
-                <div class="mt-4">The time is now.</div>
-
+        <div class="leftContainer w-14 min-w-[365px] max-w-[60%] min-h-fit flex items-center ">
+            <div class="leftBand bg-opacity-80  h-32 grow  mt-[15px] min-w-[360px] flex justify-center bg-slate-800 rounded-l-lg  ">
+                <div class="  leftLogo w-32 flex justify-end items-end mb-2 text-slate-200">
+                    span
+                </div>
+                <div class="leftText w-32  text-8xl flex justify-center items-center"><img src="./img/x2.png" alt="">
+                </div>
             </div>
         </div>
 
-        <div class="  bg-opacity-30 signUpForms bg-slate-800 min-h-[60%]  p-4">
+        <div class="rightContainer bg-slate-800 flex flex-col mr-6 min-w-[692px]  bg-opacity-80  rounded-t-lg">
 
-            <form action="./" method="post">
-                <div class="text-xl mt-4">Build the future</div>
+            <div class="CaptureText  min-h-[40%]  ">
+                <div class=" w-[70%] mt-8  leading-6  p-4 ">
+                    Pursue truth over tribalism. Strive to be more than what you are. Seek adventure and take on
+                    responsibility.
 
-                <div class="form-container 
+                    <div class="mt-4">The time is now.</div>
+
+                </div>
+            </div>
+
+            <div class="  bg-opacity-30 signUpForms bg-slate-800 min-h-[60%]  p-4">
+
+                <form action="./" method="post">
+                    <div class="text-xl mt-4">Build the future</div>
+
+                    <div class="form-container 
                 grid grid-cols-2 gap-4 mt-4 text-sm
                 ">
-                    <div class="form-row flex  flex-col items-flex-start  mt-2 mr-[150px] min-w-[210px]">
-                        <label for="full-name"> First Name</label>
-                        <input type="text" name="full-name" id="full-name" class="border-2 invalid:border-red-300" required value="Ocea">
-                    </div>
+                        <div class="form-row flex  flex-col items-flex-start  mt-2 mr-[150px] min-w-[210px]">
+                            <label for="full-name"> First Name</label>
+                            <input type="text" name="full-name" id="full-name" class="border-2 invalid:border-red-300"
+                                required value="Ocea">
+                        </div>
 
-                    <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
-                        <label for="last-name">Last Name</label>
-                        <input type="text" name="last-name" id="last-name" class="border-2 invalid:border-red-300" required value="Soff"
-                        >
-                    </div>
+                        <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" name="last-name" id="last-name" class="border-2 invalid:border-red-300"
+                                required value="Soff">
+                        </div>
 
-                    <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="name@domain.com" class="border-2 invalid:border-red-300"
-                            required value="aquatic@proton.me">
-                    </div>
+                        <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" placeholder="name@domain.com"
+                                class="border-2 invalid:border-red-300" required value="aquatic@proton.me">
+                        </div>
 
-                    <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
-                        <label for="phone">Phone Number</label>
-                        <input type="text" name="number" id="number" placeholder="313-257-3095" class="border-2 invalid:border-red-300"
-                            pattern="\d{3}[\-]\d{3}[\-]\d{4}" title='Please enter a valid number (ex: 313-257-3095)'
-                            required value="943-321-5917">
-                    </div>
+                        <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" name="number" id="number" placeholder="313-257-3095"
+                                class="border-2 invalid:border-red-300" pattern="\d{3}[\-]\d{3}[\-]\d{4}"
+                                title='Please enter a valid number (ex: 313-257-3095)' required value="943-321-5917">
+                        </div>
 
-                    <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" class="border-2 invalid:border-red-300" 
-                        minlength="5"
-                        value="12345"
-                        required>
-                        <div id="passMatch"
-                        class="text-red-400 text-xs"
-                        >
+                        <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" class="border-2 invalid:border-red-300"
+                                minlength="5" value="12345" required>
+                            <div id="passMatch" class="text-red-400 text-xs">
+                            </div>
+                        </div>
+
+                        <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
+                            <label for="confirm-password" class='min-w-[210px]'> Confirm Password</label>
+                            <input type="password" name="confirm-password" id="confirm-password"
+                                class="border-2 invalid:border-red-300" minlength="5" value="54321" required>
                         </div>
                     </div>
 
-                    <div class="form-row form-row flex  flex-col items-flex-start mt-1  mr-[150px] min-w-[210px]">
-                        <label for="confirm-password" class='min-w-[210px]'> Confirm Password</label>
-                        <input type="password" name="confirm-password" id="confirm-password" class="border-2 invalid:border-red-300" 
-                        minlength="5"
-                        value="54321"
-                        required>
-                    </div>
-                </div>
-
-        </div>
-        <div class="bg-opacity-70 login bg-slate-800  min-h-[30%] rounded-b-lg   p-4 ">
-            <div class="form-row">
-                <button type="submit" class=' bg-lime-500 mt-4 py-2 px-6 rounded-lg text-slate-200'>Engage</button>
-
-                <div class="text-sm mt-6">Already have an account? <a href="./" class="text-lime-500">	 &nbsp &nbsp
-                    Log in</a></div>
             </div>
+            <div class="bg-opacity-70 login bg-slate-800  min-h-[30%] rounded-b-lg   p-4 ">
+                <div class="form-row">
+                    <button type="submit" class=' bg-lime-500 mt-4 py-2 px-6 rounded-lg text-slate-200'>Engage</button>
+
+                    <div class="text-sm mt-6">Already have an account? <a href="./" class="text-lime-500"> &nbsp &nbsp
+                            Log in</a></div>
+                </div>
+            </div>
+
+            </form>
         </div>
 
-        </form>
+
+
     </div>
-
-
-
-
 </body>
 
 </html>

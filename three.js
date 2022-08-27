@@ -11,12 +11,12 @@ const
 // Plane Dimensions
 const world = {
     plane: {
-        width: 50,
+        width: 100,
         height: 30,
-        widthSegments: 12,
-        heightSegments: 15,
+        widthSegments: 20,
+        heightSegments: 20,
         rotation: {
-            x: -1.0,
+            x: -0.6,
             y: 1,
             z: 1,
         }
@@ -38,13 +38,13 @@ const
         world.plane.widthSegments,
         world.plane.heightSegments),
     material = new THREE.MeshPhongMaterial({
-        color: '#84cc16',
+        color: '#84CC16',
         side: THREE.DoubleSide,
         flatShading: THREE.FlatShading
     }),
     planeGeo = new THREE.Mesh(geometry, material),
-    light = new THREE.DirectionalLight('#BEF264', 0.8),
-    backLight = new THREE.DirectionalLight('#F1F5F9', 0.8),
+    light = new THREE.DirectionalLight('#84CC16', 1),
+    backLight = new THREE.DirectionalLight('#84CC16', 1),
     { array } = planeGeo.geometry.attributes.position,
     rayCaster = new THREE.Raycaster()
 
@@ -56,6 +56,7 @@ renderer.setPixelRatio(devicePixelRatio)
 threeDimEl.appendChild(renderer.domElement)
 
 scene.add(planeGeo, light, backLight)
+
 
 for (let i = 0; i < array.length; i += 3) {
     const
@@ -69,10 +70,12 @@ for (let i = 0; i < array.length; i += 3) {
 camera.position.z = 10
 planeGeo.rotation.x = world.plane.rotation.x
 
-
+const color2 = new THREE.Color( '#27272A' );
+scene.background = color2
 // Non-animate render
 renderer.render(scene, camera)
-new OrbitControls(camera, renderer.domElement)
+// new OrbitControls(camera, renderer.domElement)
+
 
 
 // Mouse tracking
@@ -80,7 +83,6 @@ const mouse = {
     x: undefined,
     y: undefined
 }
-
 
 
 function animate() {
