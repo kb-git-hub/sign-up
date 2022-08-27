@@ -4,6 +4,6 @@
     font-family: 'Michroma', sans-serif;   
 }
 
-input{
+input[type=text],input[type=password],input[type=email]{
     color: rgb(100,116,139)
 }

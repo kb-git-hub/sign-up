@@ -16,7 +16,7 @@ const world = {
         widthSegments: 12,
         heightSegments: 15,
         rotation: {
-            x: -0.5,
+            x: -1.0,
             y: 1,
             z: 1,
         }
@@ -86,7 +86,14 @@ const mouse = {
 function animate() {
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
+
+
+    //raycaster intersections
     rayCaster.setFromCamera(mouse, camera)
+    const intersects = rayCaster.intersectObject(planeGeo)
+    if (intersects.length > 0){
+        console.log('intersecting Mesh');
+    }
 
 }
 
