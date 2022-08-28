@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { FlatShading, Raycaster } from 'three';
 import { OrbitControls } from "https://unpkg.com/three@0.143.0/examples/jsm/controls/OrbitControls.js"
 
+
 //randomization
 const
     min = -1,
@@ -16,7 +17,7 @@ const world = {
         widthSegments: 20,
         heightSegments: 20,
         rotation: {
-            x: -0.6,
+            x: -0.1,
             y: 1,
             z: 1,
         }
@@ -71,14 +72,15 @@ for (let i = 0; i < array.length; i += 3) {
 const colors = []
 
 for (let i = 0; i < planeGeo.geometry.attributes.position.count; i++) {
-    colors.push(0.4,0.9,0.11)
+    colors.push(1,0,0)
+    // colors.push(0.4,0.9,0.11)
 }
 
 planeGeo.geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3))
 
 
 // set up Plane Rotation and Camera Position
-camera.position.z = 10
+camera.position.z = 50
 planeGeo.rotation.x = world.plane.rotation.x
 
 const bgColor = new THREE.Color( '#27272A' );
@@ -93,22 +95,25 @@ const mouse = {
     y: undefined
 }
 
+const controls = new OrbitControls( camera, renderer.domElement)
 
 function animate() {
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
-
 
     //raycaster intersections
     rayCaster.setFromCamera(mouse, camera)
     const intersects = rayCaster.intersectObject(planeGeo)
     if (intersects.length > 0){
         console.log(intersects[0].object.geometry.attributes.color);
+        intersects[0].object.geometry.attributes.color.setX(0,0)
+        intersects[0].object.geometry.attributes.color.setY(0,0)
+        intersects[0].object.geometry.attributes.color.setZ(0,0)
+        intersects[0].object.geometry.attributes.color.needsUpdate = true
     }
-
 }
 
-// animate()
+animate()
 
 addEventListener('mousemove', (e) => {
     mouse.x = (e.clientX / innerWidth) * 2 - 1
