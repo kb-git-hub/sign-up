@@ -17,7 +17,7 @@ const world = {
         widthSegments: 20,
         heightSegments: 20,
         rotation: {
-            x: -0.28,
+            x: -0.8,
             y: 1,
             z: 1,
         }
@@ -64,7 +64,7 @@ for (let i = 0; i < array.length; i += 3) {
         x = array[i],
         y = array[i + 1],
         z = array[i + 2]
-    array[i + 2] = z + Math.random()
+    array[i + 2] = z + Math.random() * 1.5
 }
 
 // Vertex Colors Array
@@ -81,7 +81,7 @@ planeGeo.geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Arr
 
 
 // set up Plane Rotation and Camera Position
-camera.position.z = 22
+camera.position.z = 15
 planeGeo.rotation.x = world.plane.rotation.x
 
 const bgColor = new THREE.Color('#1e293b');
@@ -125,9 +125,44 @@ function animate() {
         color.setY(intersects[0].face.c, 0.8)
         color.setZ(intersects[0].face.c, 0.08)
 
+        color.needsUpdate = true
+
+        const initialColor = {
+            r: 0.12,
+            g: 0.16,
+            b: 0.23
+        }
+
+        const hoverColor = {
+            r: 0.51,
+            g: 0.8,
+            b: 0.08
+        }
+
+        gsap.to(hoverColor,{
+            r: initialColor.r,
+            g: initialColor.g,
+            b: initialColor.b,
+            onUpdate: () => {
+                 // vert 1
+        color.setX(intersects[0].face.a, hoverColor.r)
+        color.setY(intersects[0].face.a, hoverColor.g)
+        color.setZ(intersects[0].face.a, hoverColor.b)
+
+        // vert 2
+        color.setX(intersects[0].face.b, hoverColor.r)
+        color.setY(intersects[0].face.b, hoverColor.g)
+        color.setZ(intersects[0].face.b, hoverColor.b)
+
+        // vert 3
+        color.setX(intersects[0].face.c, hoverColor.r)
+        color.setY(intersects[0].face.c, hoverColor.g)
+        color.setZ(intersects[0].face.c, hoverColor.b)
 
         color.needsUpdate = true
-        console.log(color);
+            }
+        })
+    
     }
 }
 

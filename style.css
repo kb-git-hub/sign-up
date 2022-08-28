@@ -7,3 +7,7 @@
 input[type=text],input[type=password],input[type=email]{
     color: rgb(100,116,139)
 }
+
+body{
+    -webkit-font-smoothing: antialiased ;
+}
