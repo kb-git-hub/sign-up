@@ -13,11 +13,11 @@ const
 const world = {
     plane: {
         width: 100,
-        height: 30,
+        height: 40,
         widthSegments: 20,
         heightSegments: 20,
         rotation: {
-            x: -0.1,
+            x: -0.28,
             y: 1,
             z: 1,
         }
@@ -39,7 +39,6 @@ const
         world.plane.widthSegments,
         world.plane.heightSegments),
     material = new THREE.MeshPhongMaterial({
-        // color: '#84CC16',
         side: THREE.DoubleSide,
         flatShading: THREE.FlatShading,
         vertexColors: true
@@ -72,18 +71,20 @@ for (let i = 0; i < array.length; i += 3) {
 const colors = []
 
 for (let i = 0; i < planeGeo.geometry.attributes.position.count; i++) {
-    colors.push(1,0,0)
-    // colors.push(0.4,0.9,0.11)
+    colors.push(0.12, 0.16, 0.23)
 }
 
+//lime green 0.51, 0.8, 0.08
+
+// slate 0.12, 0.16, 0.23
 planeGeo.geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3))
 
 
 // set up Plane Rotation and Camera Position
-camera.position.z = 50
+camera.position.z = 22
 planeGeo.rotation.x = world.plane.rotation.x
 
-const bgColor = new THREE.Color( '#27272A' );
+const bgColor = new THREE.Color('#1e293b');
 scene.background = bgColor
 
 // Non-animate render
@@ -95,7 +96,8 @@ const mouse = {
     y: undefined
 }
 
-const controls = new OrbitControls( camera, renderer.domElement)
+// Orbital Controls
+// const controls = new OrbitControls(camera, renderer.domElement)
 
 function animate() {
     requestAnimationFrame(animate)
@@ -104,12 +106,28 @@ function animate() {
     //raycaster intersections
     rayCaster.setFromCamera(mouse, camera)
     const intersects = rayCaster.intersectObject(planeGeo)
-    if (intersects.length > 0){
-        console.log(intersects[0].object.geometry.attributes.color);
-        intersects[0].object.geometry.attributes.color.setX(0,0)
-        intersects[0].object.geometry.attributes.color.setY(0,0)
-        intersects[0].object.geometry.attributes.color.setZ(0,0)
-        intersects[0].object.geometry.attributes.color.needsUpdate = true
+    if (intersects.length > 0) {
+
+        const { color } = intersects[0].object.geometry.attributes
+        
+        // vert 1
+        color.setX(intersects[0].face.a, 0.51)
+        color.setY(intersects[0].face.a, 0.8)
+        color.setZ(intersects[0].face.a, 0.08)
+
+        // vert 2
+        color.setX(intersects[0].face.b, 0.51)
+        color.setY(intersects[0].face.b, 0.8)
+        color.setZ(intersects[0].face.b, 0.08)
+
+        // vert 3
+        color.setX(intersects[0].face.c, 0.51)
+        color.setY(intersects[0].face.c, 0.8)
+        color.setZ(intersects[0].face.c, 0.08)
+
+
+        color.needsUpdate = true
+        console.log(color);
     }
 }
 
