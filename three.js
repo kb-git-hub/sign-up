@@ -38,12 +38,13 @@ const
         world.plane.widthSegments,
         world.plane.heightSegments),
     material = new THREE.MeshPhongMaterial({
-        color: '#84CC16',
+        // color: '#84CC16',
         side: THREE.DoubleSide,
-        flatShading: THREE.FlatShading
+        flatShading: THREE.FlatShading,
+        vertexColors: true
     }),
     planeGeo = new THREE.Mesh(geometry, material),
-    light = new THREE.DirectionalLight('#84CC16', 1),
+    light = new THREE.DirectionalLight(0xffffff, 1),
     backLight = new THREE.DirectionalLight('#84CC16', 1),
     { array } = planeGeo.geometry.attributes.position,
     rayCaster = new THREE.Raycaster()
@@ -66,17 +67,25 @@ for (let i = 0; i < array.length; i += 3) {
     array[i + 2] = z + Math.random()
 }
 
+// Vertex Colors Array
+const colors = []
+
+for (let i = 0; i < planeGeo.geometry.attributes.position.count; i++) {
+    colors.push(0.4,0.9,0.11)
+}
+
+planeGeo.geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3))
+
+
 // set up Plane Rotation and Camera Position
 camera.position.z = 10
 planeGeo.rotation.x = world.plane.rotation.x
 
-const color2 = new THREE.Color( '#27272A' );
-scene.background = color2
+const bgColor = new THREE.Color( '#27272A' );
+scene.background = bgColor
+
 // Non-animate render
 renderer.render(scene, camera)
-// new OrbitControls(camera, renderer.domElement)
-
-
 
 // Mouse tracking
 const mouse = {
@@ -94,12 +103,12 @@ function animate() {
     rayCaster.setFromCamera(mouse, camera)
     const intersects = rayCaster.intersectObject(planeGeo)
     if (intersects.length > 0){
-        console.log('intersecting Mesh');
+        console.log(intersects);
     }
 
 }
 
-// animate()
+animate()
 
 addEventListener('mousemove', (e) => {
     mouse.x = (e.clientX / innerWidth) * 2 - 1
