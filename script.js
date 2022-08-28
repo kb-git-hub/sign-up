@@ -25,7 +25,6 @@ submitBtn.addEventListener('click', (e) => {
 
         }
     }
-
 })
 
 
