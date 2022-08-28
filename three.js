@@ -3,19 +3,23 @@ import { FlatShading, Raycaster } from 'three';
 import { OrbitControls } from "https://unpkg.com/three@0.143.0/examples/jsm/controls/OrbitControls.js"
 
 
+//lime green 0.51, 0.8, 0.08
+// slate 0.12, 0.16, 0.23
+//stone 0.11, 0.10, 0.09
+
 //randomization
 const
-    min = -1,
-    max = 1,
-    randomInteger = Math.floor(Math.random() * (max - min + 1)) + min
+    min = -0.6,
+    max = 0.6,
+    randomFloat = (min, max, decimals) => (Math.random() * (max - min) + min)
 
 // Plane Dimensions
 const world = {
     plane: {
         width: 100,
         height: 40,
-        widthSegments: 20,
-        heightSegments: 20,
+        widthSegments: 30,
+        heightSegments: 30,
         rotation: {
             x: -0.8,
             y: 1,
@@ -25,7 +29,6 @@ const world = {
 }
 
 // Constant Variable declarations
-
 const threeDimEl = document.querySelector('.threeDimDiv')
 const
     scene = new THREE.Scene(),
@@ -58,25 +61,28 @@ threeDimEl.appendChild(renderer.domElement)
 
 scene.add(planeGeo, light, backLight)
 
-
+//randomize vert positions
 for (let i = 0; i < array.length; i += 3) {
     const
         x = array[i],
         y = array[i + 1],
         z = array[i + 2]
-    array[i + 2] = z + Math.random() * 1.5
+
+    array[i] = x + randomFloat(min, max)
+    array[i + 1] = y + randomFloat(min, max)
+    array[i + 2] = z + randomFloat(min, max)
 }
+
+//Plane Geometry Original Position
+planeGeo.geometry.attributes.position.originalPosition = planeGeo.geometry.attributes.position.array
+
+
 
 // Vertex Colors Array
 const colors = []
-
 for (let i = 0; i < planeGeo.geometry.attributes.position.count; i++) {
-    colors.push(0.12, 0.16, 0.23)
+    colors.push(0.11, 0.10, 0.09)
 }
-
-//lime green 0.51, 0.8, 0.08
-
-// slate 0.12, 0.16, 0.23
 planeGeo.geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3))
 
 
@@ -84,7 +90,7 @@ planeGeo.geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Arr
 camera.position.z = 15
 planeGeo.rotation.x = world.plane.rotation.x
 
-const bgColor = new THREE.Color('#1e293b');
+const bgColor = new THREE.Color('#141211');
 scene.background = bgColor
 
 // Non-animate render
@@ -99,9 +105,24 @@ const mouse = {
 // Orbital Controls
 // const controls = new OrbitControls(camera, renderer.domElement)
 
+let frame = 0
 function animate() {
+    frame += 0.01
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
+
+    const { array, originalPosition } = planeGeo.geometry.attributes.position
+
+    console.log(frame);
+    for (let i = 0; i < array.length; i+3) {
+        array[i] = originalPosition[i] + Math.cos
+        
+
+        
+
+    }
+
+
 
     //raycaster intersections
     rayCaster.setFromCamera(mouse, camera)
@@ -109,7 +130,7 @@ function animate() {
     if (intersects.length > 0) {
 
         const { color } = intersects[0].object.geometry.attributes
-        
+
         // vert 1
         color.setX(intersects[0].face.a, 0.51)
         color.setY(intersects[0].face.a, 0.8)
@@ -127,42 +148,42 @@ function animate() {
 
         color.needsUpdate = true
 
-        const initialColor = {
-            r: 0.12,
-            g: 0.16,
-            b: 0.23
-        }
+        const
+            initialColor = {
+                r: 0.11,
+                g: 0.10,
+                b: 0.09
+            },
+            hoverColor = {
+                r: 0.51,
+                g: 0.8,
+                b: 0.08
+            }
 
-        const hoverColor = {
-            r: 0.51,
-            g: 0.8,
-            b: 0.08
-        }
-
-        gsap.to(hoverColor,{
+        gsap.to(hoverColor, {
             r: initialColor.r,
             g: initialColor.g,
             b: initialColor.b,
             onUpdate: () => {
-                 // vert 1
-        color.setX(intersects[0].face.a, hoverColor.r)
-        color.setY(intersects[0].face.a, hoverColor.g)
-        color.setZ(intersects[0].face.a, hoverColor.b)
+                // vert 1
+                color.setX(intersects[0].face.a, hoverColor.r)
+                color.setY(intersects[0].face.a, hoverColor.g)
+                color.setZ(intersects[0].face.a, hoverColor.b)
 
-        // vert 2
-        color.setX(intersects[0].face.b, hoverColor.r)
-        color.setY(intersects[0].face.b, hoverColor.g)
-        color.setZ(intersects[0].face.b, hoverColor.b)
+                // vert 2
+                color.setX(intersects[0].face.b, hoverColor.r)
+                color.setY(intersects[0].face.b, hoverColor.g)
+                color.setZ(intersects[0].face.b, hoverColor.b)
 
-        // vert 3
-        color.setX(intersects[0].face.c, hoverColor.r)
-        color.setY(intersects[0].face.c, hoverColor.g)
-        color.setZ(intersects[0].face.c, hoverColor.b)
+                // vert 3
+                color.setX(intersects[0].face.c, hoverColor.r)
+                color.setY(intersects[0].face.c, hoverColor.g)
+                color.setZ(intersects[0].face.c, hoverColor.b)
 
-        color.needsUpdate = true
+                color.needsUpdate = true
             }
         })
-    
+
     }
 }
 
