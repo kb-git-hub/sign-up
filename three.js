@@ -9,20 +9,20 @@ import { OrbitControls } from "https://unpkg.com/three@0.143.0/examples/jsm/cont
 
 //randomization
 const
-    min = -0.6,
-    max = 0.6,
+    min = -0.2,
+    max = 0.2,
     randomFloat = (min, max, decimals) => (Math.random() * (max - min) + min)
 
 // Plane Dimensions
 const world = {
     plane: {
         width: 100,
-        height: 40,
-        widthSegments: 30,
-        heightSegments: 30,
+        height: 60,
+        widthSegments: 40,
+        heightSegments: 40,
         rotation: {
-            x: -0.8,
-            y: 1,
+            x: 0.3,
+            y: 0.2,
             z: 1,
         }
     }
@@ -47,7 +47,7 @@ const
         vertexColors: true
     }),
     planeGeo = new THREE.Mesh(geometry, material),
-    light = new THREE.DirectionalLight(0xffffff, 1),
+    light = new THREE.DirectionalLight('#78716c', 1),
     backLight = new THREE.DirectionalLight('#84CC16', 1),
     { array } = planeGeo.geometry.attributes.position,
     rayCaster = new THREE.Raycaster()
@@ -61,22 +61,29 @@ threeDimEl.appendChild(renderer.domElement)
 
 scene.add(planeGeo, light, backLight)
 
+// Random values array
+const randomValues = []
 //randomize vert positions
-for (let i = 0; i < array.length; i += 3) {
-    const
-        x = array[i],
-        y = array[i + 1],
-        z = array[i + 2]
+for (let i = 0; i < array.length; i++) {
 
-    array[i] = x + randomFloat(min, max)
-    array[i + 1] = y + randomFloat(min, max)
-    array[i + 2] = z + randomFloat(min, max)
+    if (i % 3 === 0) {
+        const
+            x = array[i],
+            y = array[i + 1],
+            z = array[i + 2]
+
+        array[i] = x + randomFloat(min, max)
+        array[i + 1] = y + randomFloat(min, max)
+        array[i + 2] = z + randomFloat(min, max)
+    }
+    randomValues.push(randomFloat(min, max) * Math.PI*2)
 }
 
 //Plane Geometry Original Position
 planeGeo.geometry.attributes.position.originalPosition = planeGeo.geometry.attributes.position.array
 
-
+//Plane Geometry random Values array
+planeGeo.geometry.attributes.position.randomValues = randomValues
 
 // Vertex Colors Array
 const colors = []
@@ -87,8 +94,9 @@ planeGeo.geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Arr
 
 
 // set up Plane Rotation and Camera Position
-camera.position.z = 15
+camera.position.z = 10
 planeGeo.rotation.x = world.plane.rotation.x
+planeGeo.rotation.y = world.plane.rotation.y
 
 const bgColor = new THREE.Color('#141211');
 scene.background = bgColor
@@ -111,16 +119,18 @@ function animate() {
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
 
-    const { array, originalPosition } = planeGeo.geometry.attributes.position
-
-    console.log(frame);
-    for (let i = 0; i < array.length; i+3) {
-        array[i] = originalPosition[i] + Math.cos
-        
-
-        
-
+    const { array, originalPosition, randomValues } = planeGeo.geometry.attributes.position
+    for (let i = 0; i < array.length; i += 3) {
+        //x
+        array[i] = originalPosition[i] + Math.cos(frame + randomValues[i]) * 0.008
+        //y
+        array[i+1] = originalPosition[i+1] + Math.sin(frame + randomValues[i+1]) * 0.008
+        // array[i+2] = originalPosition[i] + Math.cos(frame + randomValues[i+2]) * 0.02
+    
+    
     }
+
+    planeGeo.geometry.attributes.position.needsUpdate = true
 
 
 
