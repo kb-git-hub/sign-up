@@ -103,12 +103,12 @@ function animate() {
     rayCaster.setFromCamera(mouse, camera)
     const intersects = rayCaster.intersectObject(planeGeo)
     if (intersects.length > 0){
-        console.log(intersects);
+        console.log(intersects[0].object.geometry.attributes.color);
     }
 
 }
 
-animate()
+// animate()
 
 addEventListener('mousemove', (e) => {
     mouse.x = (e.clientX / innerWidth) * 2 - 1
